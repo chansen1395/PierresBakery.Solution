@@ -41,11 +41,7 @@ namespace Bakery.Controllers
 
     [HttpPost]
     public ActionResult Create(Flavor flavor)
-    // public async Task<ActionResult> Create(Flavor flavor)
     {
-      // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      // var currentUser = await _userManager.FindByIdAsync(userId);
-      // flavor.User = currentUser;
       _db.Flavors.Add(flavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
