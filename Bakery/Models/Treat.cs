@@ -11,6 +11,8 @@ namespace Bakery.Models
 
     public int TreatId { get; set; }
     public string TreatName { get; set; }
+    public virtual ApplicationUser User { get; set; }
+
 
     public virtual ICollection<FlavorTreat> JoinEntities { get;}
 

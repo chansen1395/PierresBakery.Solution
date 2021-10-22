@@ -1,6 +1,27 @@
+@{
+  Layout = "_Layout";
+}
+
 @using Bakery.Models
 
+@if (Model.Flavors.Count == 0)
+{
+  <p>No Flavors have been added yet.</p>
+}
+@foreach(Flavor flavor in @Model.Flavors)
+{
+  <li>@Html.ActionLink($"{flavor.FlavorName}", "Details", "Flavors", new { id = flavor.FlavorId }, null)</li>
+}
 
-<h1>Test</h1>
-<p>@Model.test1</p>
-<p>@Model.test2</p>
+@if (Model.Treats.Count == 0)
+{
+  <p>No Treats have been added yet.</p>
+}
+@foreach(Treat treat in @Model.Treats)
+{
+  <li>@Html.ActionLink($"{treat.TreatName}", "Details", "Treats", new { id = treat.TreatId }, null)</li>
+}
+
+<div id="footer">
+  <button  class="bottom">@Html.ActionLink("Home", "Index")</button>
+</div>
