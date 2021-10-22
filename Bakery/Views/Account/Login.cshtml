@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Microsoft.AspNetCore.Mvc
+@using System.Web
+
+@using Bakery.ViewModels
+
+@model LoginViewModel
+
+<h2>Log in with your account</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email, new { required = "required"})
+    <br>
+    @Html.LabelFor(m => m.Password)
+    @Html.PasswordFor(m => m.Password, new { required = "required"})
+    @Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
+    <br>
+
+    <input type="submit" value="Log in" class="btn btn-primary" />
+}
+
+
+<div id="footer">
+<button class="bottom">@Html.ActionLink("Home", "Index", "Home")</button>
+</div>
