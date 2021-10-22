@@ -25,5 +25,76 @@ namespace Bakery.Controllers
     {
       return View();
     }
+
+    [HttpPost]
+    public async Task<ActionResult> Index(LoginViewModel model)
+    {
+      if (model.Email != null && model.Password != null)
+      {
+        Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+        if (result.Succeeded)
+        {
+          return RedirectToAction("Index");
+        }
+        else
+        {
+          ModelState.AddModelError("password", "The email or password is incorrect");
+          ModelState.AddModelError("", "The email or password provided is incorrect.");
+          return View();
+        }
+      }
+      else
+      {
+        return View();
+      }
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> LogOff()
+    {
+      await _signInManager.SignOutAsync();
+      return RedirectToAction("Index", "Home");
+    }
+
+    public IActionResult Register()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Register(RegisterViewModel model)
+    {
+      var user = new ApplicationUser { UserName = model.Email };
+      IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+      if (result.Succeeded)
+      {
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        return View();
+      }
+    }
+    public ActionResult Login()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Login(LoginViewModel model)
+    {
+      Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+
+      if (result.Succeeded)
+      {
+        return RedirectToAction("Index", "Home");
+      }
+      else
+      {
+        ModelState.AddModelError("password", "The email or password is incorrect");
+        ModelState.AddModelError("", "The email or password provided is incorrect.");
+        return View();
+      }
+    }
   }
 }

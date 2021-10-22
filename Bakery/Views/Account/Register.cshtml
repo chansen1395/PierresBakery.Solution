@@ -12,6 +12,7 @@
 {
     @Html.LabelFor(user => user.Email)
     @Html.TextBoxFor(user=> user.Email)
+    @Html.ValidationSummary()
     <br>
     @Html.LabelFor(user=> user.Password)
     @Html.PasswordFor(user=> user.Password)
