@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Dynamic;
 
 namespace Bakery.Controllers
 {
@@ -9,6 +10,14 @@ namespace Bakery.Controllers
       public ActionResult Index()
       {
         return View();
+      }
+
+      public ActionResult ViewAll()
+      {
+        dynamic sampleObject = new ExpandoObject();
+        sampleObject.test1 = "hello";
+        sampleObject.test2 = "there";
+        return View(sampleObject);
       }
 
     }
