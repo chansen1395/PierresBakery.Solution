@@ -4,21 +4,34 @@
 
 @using Bakery.Models
 
+@if (!User.Identity.IsAuthenticated)
+{
+  <nav id="navbar">
+    <button>Not signed in.
+      @using (Html.BeginForm("Index", "Account"))
+      {
+        <input type="submit" class="btn btn-primary" value="Log in" />
+      }
+    </button>
+  </nav>
+  <hr>
+}
+
+<h3>Flavors from all users:</h3>
 @if (Model.Flavors.Count == 0)
 {
   <p>No Flavors have been added yet.</p>
 }
-<h3>Flavors from all users:</h3>
 @foreach(Flavor flavor in @Model.Flavors)
 {
   <li>@Html.ActionLink($"{flavor.FlavorName}", "Details", "Flavors", new { id = flavor.FlavorId }, null)</li>
 }
 
+<h3>Treats from all users:</h3>
 @if (Model.Treats.Count == 0)
 {
   <p>No Treats have been added yet.</p>
 }
-<h3>Treats from all users:</h3>
 @foreach(Treat treat in @Model.Treats)
 {
   <li>@Html.ActionLink($"{treat.TreatName}", "Details", "Treats", new { id = treat.TreatId }, null)</li>

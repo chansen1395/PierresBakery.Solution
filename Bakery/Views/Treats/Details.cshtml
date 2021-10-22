@@ -16,6 +16,18 @@
   </nav>
   <hr>
 }
+else
+{
+  <nav id="navbar">
+    <button>Not signed in.
+      @using (Html.BeginForm("Index", "Account"))
+      {
+        <input type="submit" class="btn btn-primary" value="Log in" />
+      }
+    </button>
+  </nav>
+  <hr>
+}
 
 <h2>Treat Details</h2>
 <hr />

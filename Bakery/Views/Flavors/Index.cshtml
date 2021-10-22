@@ -36,11 +36,12 @@
 else
 {
   <nav id="navbar">
-    Not signed in.
+    <button>Not signed in.
       @using (Html.BeginForm("Index", "Account"))
       {
         <input type="submit" class="btn btn-primary" value="Log in" />
       }
+    </button>
   </nav>
   <hr>
 

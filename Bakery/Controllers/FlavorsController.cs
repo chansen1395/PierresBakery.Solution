@@ -15,7 +15,7 @@ namespace Bakery.Controllers
   public class FlavorsController : Controller
   {
     private readonly BakeryContext _db;
-    private readonly UserManager<ApplicationUser> _userManager; //new line
+    private readonly UserManager<ApplicationUser> _userManager;
 
     public FlavorsController(UserManager<ApplicationUser> userManager, BakeryContext db)
     {

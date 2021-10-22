@@ -1,8 +1,30 @@
 @{
   Layout = "_Layout";
 }
-<nav class="navbar fixed-top navbar-light" style="background-color: #e3f2fd;">
-</nav>
+@if (User.Identity.IsAuthenticated)
+{
+  <nav id="navbar">
+    <button>Signed in as @User.Identity.Name.
+      @using (Html.BeginForm("LogOff", "Account"))
+      {
+        <input type="submit" class="btn btn-danger" value="Log out" />
+      }
+    </button>
+  </nav>
+  <hr>
+}
+@if (!User.Identity.IsAuthenticated)
+{
+  <nav id="navbar">
+    <button>Not signed in.
+      @using (Html.BeginForm("Index", "Account"))
+      {
+        <input type="submit" class="btn btn-primary" value="Log in" />
+      }
+    </button>
+  </nav>
+  <hr>
+}
 
 
 <h1>Welcome to Pierre's Bakery!</h1>
