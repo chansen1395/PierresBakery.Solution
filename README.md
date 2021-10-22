@@ -48,18 +48,19 @@ _This is an MVC web application for a bakery owner to track flavors and treats f
 
 - _In order to set up the project environment, in bash at a
  folder of your choice, type the following:_
-    1. **$ git clone https://github.com/chansen1395/Factory.Solution.git**
+    1. **$ git clone https://github.com/chansen1395/PierresBakery.Solution.git**
     2. **$ code .**
-    3. **$ cd YourFolder.Solution/Factory**
+    3. **$ cd YourFolder.Solution/Bakery**
     4. **Install packages if not already installed:**
     ```
       $ dotnet add package Microsoft.EntityFrameworkCore -v 5.0.0
       $ dotnet add package Pomelo.EntityFrameworkCore.MySql -v 5.0.0-alpha.2
       $ dotnet add package Microsoft.EntityFrameworkCore.Proxies -v 5.0.0
       $ dotnet add package Microsoft.EntityFrameworkCore.Design -v 5.0.0
+      $ dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore -v 5.0.0
       $ dotnet tool install --global dotnet-ef
     ```
-    5. **Build out your database Migrations with the following:**
+    5. _Skip if already completed_ **Build out your database Migrations with the following:**
     ```
       $ dotnet ef migrations add Initial
       $ dotnet ef database update
@@ -68,22 +69,25 @@ _This is an MVC web application for a bakery owner to track flavors and treats f
 
 - **Database Schema**
 
-| engineers   | machines     | engineermachine   |
-| ----------- | ------------ | ----------------- |
-| EngineerId  | MachineId    | EngineerMachineId |
-| Name        | Name         | MachineId         |
-| RepairMade  | SerialNumber | EngineerId        |
-|             | Operational  |                   |
-- _In order to run the program, follow along with the previous steps. After step 4, navigate to the Factory directory:_
+| flavors     | treats       | flavortreat   |
+| ----------- | ------------ | ------------- |
+| FlavorId    | TreatId      | FlavorTreatId |
+| FlavorName  | TreatName    | TreatId       |
+|             |              | FlavorId      |
+
+- _In order to run the program, follow along with the previous steps. After step 4, navigate to the Bakery directory:_
 ```
-    1. $ cd ..Factory
+    1. $ cd ..Bakery
     2. $ dotnet watch run
     3. _Navigate to http://localhost:5000/ in your browser.
 ```
 
+- _Anonymous users are primarily limited to view, whereas registered users are given access to full CRUD abilities. Follow page prompts to create an account and sign in to explore full functionality._
+
 ## Known Bugs
 
-* _No Known Bugs._
+* _Buttons only work when text is clicked._
+* _Navbar renders within Jumbotron._
 
 ## License
 
@@ -92,4 +96,4 @@ _This is an MVC web application for a bakery owner to track flavors and treats f
 ## Contact Information
 
 - Connor Hansen: _{<chansen13@georgefox.edu>}_
-- _{[GitHub Repo - main](https://github.com/chansen1395/Factory.Solution)}_
+- _{[GitHub Repo - main](https://github.com/chansen1395/PierresBakery.Solution)}_

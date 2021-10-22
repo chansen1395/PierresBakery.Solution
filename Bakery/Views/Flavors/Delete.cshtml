@@ -4,6 +4,19 @@
 
 @model Bakery.Models.Flavor
 
+@if (User.Identity.IsAuthenticated)
+{
+  <nav id="navbar">
+    <button>Signed in as @User.Identity.Name.
+      @using (Html.BeginForm("LogOff", "Account"))
+      {
+        <input type="submit" class="btn btn-danger" value="Log out" />
+      }
+    </button>
+  </nav>
+  <hr>
+}
+
 <h2>Are you sure you want to delete this?</h2>
 
 @Html.DisplayNameFor(model => model.FlavorName): @Html.DisplayFor(model => model.FlavorName)

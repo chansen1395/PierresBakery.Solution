@@ -4,6 +4,19 @@
 
 @model Bakery.Models.Treat
 
+@if (User.Identity.IsAuthenticated)
+{
+  <nav id="navbar">
+    <button>Signed in as @User.Identity.Name.
+      @using (Html.BeginForm("LogOff", "Account"))
+      {
+        <input type="submit" class="btn btn-danger" value="Log out" />
+      }
+    </button>
+  </nav>
+  <hr>
+}
+
 <h2>Add a flavor</h2>
 
 <h4>Add a flavor to this treat: @Html.DisplayFor(model => model.TreatName)</h4>

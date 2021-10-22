@@ -22,6 +22,7 @@ namespace Bakery.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
     public async Task<ActionResult> Index()
     {
         var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -36,19 +37,20 @@ namespace Bakery.Controllers
       return View();
     }
 
-        [HttpPost]
-    public async Task<ActionResult> Create(Treat treat, int FlavorId)
+    [HttpPost]
+    public ActionResult Create(Treat treat, int FlavorId)
     {
     _db.Treats.Add(treat);
     _db.SaveChanges();
     if (FlavorId != 0)
     {
-        _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = FlavorId, TreatId = treat.TreatId });
+      _db.FlavorTreat.Add(new FlavorTreat() { FlavorId = FlavorId, TreatId = treat.TreatId });
     }
     _db.SaveChanges();
     return RedirectToAction("Index");
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisTreat = _db.Treats

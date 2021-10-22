@@ -5,6 +5,29 @@
 @using Bakery.Models;
 @model IEnumerable<Bakery.Models.Treat>
 
+@if (User.Identity.IsAuthenticated)
+{
+  <nav id="navbar">
+    <button>Signed in as @User.Identity.Name.
+      @using (Html.BeginForm("LogOff", "Account"))
+      {
+        <input type="submit" class="btn btn-danger" value="Log out" />
+      }
+    </button>
+  </nav>
+  <hr>
+}
+else if (!User.Identity.IsAuthenticated)
+{
+  <nav id="navbar">
+      @using (Html.BeginForm("Login", "Account"))
+      {
+        <input type="submit" class="btn btn-danger" value="Log in" />
+      }
+  </nav>
+  <hr>
+}
+
 <h1>Treats for @User.Identity.Name</h1>
 
 @if (Model.Any())

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Bakery.Controllers
 {
-    [Authorize]
+  [Authorize]
   public class FlavorsController : Controller
   {
     private readonly BakeryContext _db;
@@ -23,15 +23,11 @@ namespace Bakery.Controllers
       _db = db;
     }
 
+    [AllowAnonymous]
     public ActionResult Index()
-    // public async Task<ActionResult> Index()
     {
-        // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        // var currentUser = await _userManager.FindByIdAsync(userId);
-        // var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
         List<Flavor> model = _db.Flavors.ToList();
         return View(model);
-        // return View(userFlavors);
     }
 
     public ActionResult Create()
@@ -47,6 +43,7 @@ namespace Bakery.Controllers
       return RedirectToAction("Index");
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisFlavor = _db.Flavors

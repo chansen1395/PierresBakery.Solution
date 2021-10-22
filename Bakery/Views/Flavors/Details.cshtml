@@ -4,8 +4,20 @@
 
 @model Bakery.Models.Flavor;
 
-<h2>Flavor Details</h2>
-<hr />
+@if (User.Identity.IsAuthenticated)
+{
+  <nav id="navbar">
+    <button>Signed in as @User.Identity.Name.
+      @using (Html.BeginForm("LogOff", "Account"))
+      {
+        <input type="submit" class="btn btn-danger" value="Log out" />
+      }
+    </button>
+  </nav>
+  <hr>
+}
+
+
 <h3>@Html.DisplayNameFor(model => model.FlavorName): @Html.DisplayFor(model => model.FlavorName)</h3>
 
 @if(@Model.JoinEntities.Count == 0)
