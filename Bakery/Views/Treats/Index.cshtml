@@ -16,19 +16,8 @@
     </button>
   </nav>
   <hr>
-}
-else if (!User.Identity.IsAuthenticated)
-{
-  <nav id="navbar">
-      @using (Html.BeginForm("Login", "Account"))
-      {
-        <input type="submit" class="btn btn-danger" value="Log in" />
-      }
-  </nav>
-  <hr>
-}
 
-<h1>Treats for @User.Identity.Name</h1>
+  <h1>Treats for @User.Identity.Name</h1>
 
 @if (Model.Any())
 {
@@ -43,6 +32,50 @@ else
 {
   <h3>@User.Identity.Name, you have not added any treats yet!</h3>
 }
+}
+else
+{
+  <nav id="navbar">
+    Not signed in.
+      @using (Html.BeginForm("Index", "Account"))
+      {
+        <input type="submit" class="btn btn-primary" value="Log in" />
+      }
+  </nav>
+  <hr>
+
+  <h1>Treats:</h1>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Treat treat in Model)
+    {
+      <li>@Html.ActionLink($"{treat.TreatName}", "Details", new { id = treat.TreatId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>No treats have been added yet!</h3>
+}
+}
+
+@* <h1>Treats for @User.Identity.Name</h1>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Treat treat in Model)
+    {
+      <li>@Html.ActionLink($"{treat.TreatName}", "Details", new { id = treat.TreatId })</li>
+    }
+  </ul>
+} 
+else
+{
+  <h3>@User.Identity.Name, you have not added any treats yet!</h3>
+} *@
 <div id="footer">
   <button class="bottom">@Html.ActionLink("Home", "Index", "Home")</button>
   <button class="bottom">@Html.ActionLink("Add new treat", "Create")</button>

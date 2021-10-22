@@ -16,23 +16,51 @@
     </button>
   </nav>
   <hr>
-}
 
-<h1>Flavors for @User.Identity.Name</h1>
+  <h1>Flavors for @User.Identity.Name</h1>
+
+@if (Model.Any())
+  {
+    <ul>
+      @foreach (Flavor Flavor in Model)
+      {
+        <li>@Html.ActionLink($"{Flavor.FlavorName}", "Details", new { id = Flavor.FlavorId })</li>
+      }
+    </ul>
+  } 
+  else
+  {
+    <h3>@User.Identity.Name, you have not added any Flavors yet!</h3>
+  }
+}
+else
+{
+  <nav id="navbar">
+    Not signed in.
+      @using (Html.BeginForm("Index", "Account"))
+      {
+        <input type="submit" class="btn btn-primary" value="Log in" />
+      }
+  </nav>
+  <hr>
+
+  <h1>Flavors:</h1>
 
 @if (Model.Any())
 {
   <ul>
-    @foreach (Flavor flavor in Model)
+    @foreach (Flavor Flavor in Model)
     {
-      <li>@Html.ActionLink($"{flavor.FlavorName}", "Details", new { id = flavor.FlavorId })</li>
+      <li>@Html.ActionLink($"{Flavor.FlavorName}", "Details", new { id = Flavor.FlavorId })</li>
     }
   </ul>
 } 
 else
 {
-  <h3>@User.Identity.Name, you have not added any treats yet!</h3>
+  <h3>No Flavors have been added yet!</h3>
 }
+}
+
 <div id="footer">
   <button class="bottom">@Html.ActionLink("Home", "Index", "Home")</button>
   <button class="bottom">@Html.ActionLink("Add new flavor", "Create")</button>

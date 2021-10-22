@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
+
 
 namespace Bakery.Controllers
 {
@@ -14,7 +16,7 @@ namespace Bakery.Controllers
   public class TreatsController : Controller
   {
     private readonly BakeryContext _db;
-    private readonly UserManager<ApplicationUser> _userManager; //new line
+    private readonly UserManager<ApplicationUser> _userManager;
 
     public TreatsController(UserManager<ApplicationUser> userManager, BakeryContext db)
     {
@@ -23,12 +25,14 @@ namespace Bakery.Controllers
     }
 
     [AllowAnonymous]
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
-        var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-        var currentUser = await _userManager.FindByIdAsync(userId);
-        var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
-        return View(userTreats);
+        // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        // var currentUser = await _userManager.FindByIdAsync(userId);
+        // var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
+        List<Treat> model = _db.Treats.ToList();
+        return View(model);
+        // return View(userTreats);
     }
 
     public ActionResult Create()
