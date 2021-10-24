@@ -3,13 +3,12 @@
 }
 
 @using Bakery.Models
-@* @model List<Bakery.Models.Flavor> *@
 
-<h3>Search Flavors:</h3>
+<h3>Search Flavors and Treats:</h3>
 
-<form asp-controller="FlavorsController" asp-action="Search">
+<form asp-controller="HomeController" asp-action="Search">
     <p>
-        Flavor Name: <input type="text" name="SearchString" />
+        Search: <input type="text" name="SearchString" />
         <input type="submit" value="Filter" />
     </p>
 </form>
