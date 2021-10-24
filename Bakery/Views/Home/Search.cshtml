@@ -1,0 +1,44 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Bakery.Models
+@* @model List<Bakery.Models.Flavor> *@
+
+<h3>Search Flavors:</h3>
+
+<form asp-controller="FlavorsController" asp-action="Search">
+    <p>
+        Flavor Name: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+@if(Model.Flavors.Count == 0 && Model.Treats.Count == 0)
+{
+  <p>No search results.</p>
+}
+
+else
+{
+  <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @foreach(Flavor flavor in Model.Flavors)
+                {
+                  <li>@Html.ActionLink($"{flavor.FlavorName}", "Details", "Flavors", new { id = flavor.FlavorId }, null)</li>
+                }
+                @foreach(Treat treat in Model.Treats)
+                {
+                  <li>@Html.ActionLink($"{treat.TreatName}", "Details", "Treats", new { id = treat.TreatId }, null)</li>
+                }
+            </th>
+        </tr>
+    </thead>
+  </table>
+}
+
+<div id="footer">
+  <button  class="bottom">@Html.ActionLink("Home", "Index")</button>
+</div>
