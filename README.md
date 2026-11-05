@@ -95,5 +95,5 @@ _This is an MVC web application for a bakery owner to track flavors and treats f
 
 ## Contact Information
 
-- Connor Hansen: _{<chansen13@georgefox.edu>}_
+- Connor Hansen
 - _{[GitHub Repo - main](https://github.com/chansen1395/PierresBakery.Solution)}_
